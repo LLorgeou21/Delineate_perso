@@ -2,7 +2,7 @@
 class IRMApiService {
     constructor() {
         // URL de votre backend via le tunnel
-        this.baseURL = 'https://f98bfe1645c670.lhr.life'; // À remplacer
+        this.baseURL = 'https://55d35c080b8205.lhr.life'; // À remplacer
     }
 
     async uploadFile(file) {
