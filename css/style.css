@@ -76,7 +76,7 @@ header p {
     border-radius: 4px;
     cursor: crosshair;
     width: 100%;
-    height: 75vh; /* ⬅️ CHANGEZ CETTE VALEUR */
+    height: 60vh; /* ⬅️ CHANGEZ CETTE VALEUR */
     min-height: 300px;
     max-width: 100%;
 }
@@ -198,7 +198,7 @@ header p {
     padding: 15px;
     border-radius: 5px;
     margin-top: 15px;
-    border: 1px solid #404040;
+    border: 1px solid #a11212;
 }
 
 .file-info.hidden {

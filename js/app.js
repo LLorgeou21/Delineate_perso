@@ -161,30 +161,51 @@ class IRMViewer {
         document.getElementById('coronal-next')?.addEventListener('click', () => this.navigateSlice('coronal', 1));
     }
 
+    async checkBackendStatus() {
+        try {
+            const response = await fetch(`${this.baseURL}/api/status`);
+            const status = await response.json();
+            
+            if (status.ready) {
+                this.updateStatus('✅ Backend connecté');
+            } else {
+                this.updateStatus('⚠️ Backend en cours de démarrage');
+            }
+        } catch (error) {
+            this.updateStatus('❌ Backend non disponible - Mode local');
+        }
+    }
+
     async handleFileSelect(event) {
         const file = event.target.files[0];
         if (!file) return;
 
+        // Vérification du type de fichier
         const isNifti = file.name.match(/\.nii(\.gz)?$/i);
         const isDicom = file.name.match(/\.dcm$|\.dicom$/i);
 
         if (!isNifti && !isDicom) {
-            this.showError('Veuillez sélectionner un fichier NIfTI (.nii, .nii.gz) ou DICOM (.dcm, .dicom)');
+            this.showError('Veuillez sélectionner un fichier NIfTI ou DICOM');
             return;
         }
 
-        this.showLoading('Lecture du fichier...');
-        this.updateStatus('Traitement de: ' + file.name);
+        this.showLoading('Upload et traitement du fichier...');
 
         try {
+            // Option 1: Traitement local (actuel)
             if (isNifti) {
                 await this.loadNiftiFile(file);
             } else if (isDicom) {
                 await this.loadDicomFile(file);
             }
-            
+
+            // Option 2: Envoi au backend
+            // const result = await window.IRMApi.uploadFile(file);
+            // this.processBackendResponse(result);
+
             this.displayFileInfo(file);
-            
+            this.updateStatus('✅ Fichier chargé avec succès');
+
         } catch (error) {
             console.error('Erreur:', error);
             this.showError('Erreur lors du chargement: ' + error.message);
