@@ -15,16 +15,9 @@
 <body>
     <div class="container">
         <header>
-            <h1>Visualiseur IRM - Cornerstone.js</h1>
-            <p>Chargez des fichiers NIfTI ou DICOM pour visualiser les coupes</p>
+            <h2>Projet WebApp pour Delineate</h2>
         </header>
 
-        <div class="upload-section">
-            <input type="file" id="file-input" accept=".nii,.nii.gz,.gz,.dcm,.dicom">
-            <label for="file-input" class="upload-btn">
-                📁 Choisir un fichier (NIfTI/DICOM)
-            </label>
-        </div>
 
         <!-- Contrôles Cornerstone -->
         <div class="cornerstone-controls">
@@ -34,16 +27,17 @@
                 <input type="range" id="window-width" min="1" max="255" value="180">
             </div>
             <div class="control-group">
+                <input type="file" id="file-input" accept=".nii,.nii.gz,.gz,.dcm,.dicom">
+                <label for="file-input" class="upload-btn">
+                    📁 Choisir un fichier (NIfTI/DICOM)
+                </label>
                 <button id="reset-view">Reset Vue</button>
-                <button id="zoom-in">Zoom +</button>
-                <button id="zoom-out">Zoom -</button>
             </div>
         </div>
 
         <!-- Interface 3 vues avec Cornerstone -->
         <div class="views-container">
             <div class="view-panel">
-                <h3>Axial</h3>
                 <div class="view-content">
                     <div id="axial-view" class="cornerstone-view"></div>
                     <div class="view-controls">
@@ -55,7 +49,6 @@
             </div>
             
             <div class="view-panel">
-                <h3>Sagittal</h3>
                 <div class="view-content">
                     <div id="sagittal-view" class="cornerstone-view"></div>
                     <div class="view-controls">
@@ -67,7 +60,6 @@
             </div>
             
             <div class="view-panel">
-                <h3>Coronal</h3>
                 <div class="view-content">
                     <div id="coronal-view" class="cornerstone-view"></div>
                     <div class="view-controls">
@@ -79,8 +71,8 @@
             </div>
         </div>
 
-        <div id="file-info" class="file-info hidden"></div>
-        <div id="app-status" class="app-status"></div>
+        <!--<div id="file-info" class="file-info hidden"></div>
+        <div id="app-status" class="app-status"></div>-->
     </div>
 
     <!-- Notre application -->
